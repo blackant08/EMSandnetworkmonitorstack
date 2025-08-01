@@ -1,0 +1,36 @@
+[{"measurement":"alert","tags":{"event":"low_volt","source":"s475","message":"DC Voltage rendah: 2 V"},"fields":{"value":2}}]
+[{"measurement":"alert","tags":{"event":"low_volt","source":"s475","message":"DC Voltage rendah: 2 V"},"fields":{"value":2}}]
+[LOW_VOLT] DC Voltage rendah: 2 V
+[LOW_VOLT] DC Voltage rendah: 2 V
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[DEVICE_OFFLINE] Alert: device_offline
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.9 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 38.6 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 38.2 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 38.2 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 38.5 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.8 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.2 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.9 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 37.9 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 36.7 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 36.1 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 35.6 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 37 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 38.7 %
+[DEVICE_OFFLINE] Alert: device_offline
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.9 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.7 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.4 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.5 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.8 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.7 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.8 %
+[HUMIDITY_LOW] Humidity terlalu rendah: 39.9 %

@@ -1,0 +1,88 @@
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=sensors
+      - TZ=Asia/Jakarta
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Asia/Jakarta
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_SERVER_DOMAIN=192.168.20.6
+      - GF_SERVER_ROOT_URL=http://192.168.20.6:3000/
+      - GF_RENDERING_SERVER_URL=http://renderer:8081/render
+      - GF_RENDERING_CALLBACK_URL=http://grafana:3000/
+      - GF_LOG_FILTERS=rendering:debu
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+
+  renderer:
+    image: grafana/grafana-image-renderer:latest
+    container_name: grafana-renderer
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+
+  nodered:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodered-node22
+    container_name: nodered
+    ports:
+      - "1880:1880"
+    environment:
+      - TZ=Asia/Jakarta
+    volumes:
+      - nodered-data:/data
+      - ./logs:/logs
+      - ./shared:/shared
+    restart: unless-stopped
+    depends_on:
+      - influxdb
+
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
+      - ./loki-data:/etc/loki
+      - ./loki-data/boltdb-cache:/tmp/loki/boltdb-cache
+      - ./loki-data/chunks:/tmp/loki/chunks
+      - ./loki-data/compactor:/loki/compactor
+    command: -config.file=/etc/loki/local-config.yaml
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      - ./logs:/logs
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+    command: -config.file=/etc/promtail/config.yaml
+    restart: unless-stopped
+    depends_on:
+      - loki
+
+
+volumes:
+  influxdb-data:
+  grafana-data:
+  nodered-data:

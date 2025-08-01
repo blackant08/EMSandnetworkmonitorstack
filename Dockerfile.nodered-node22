@@ -1,0 +1,28 @@
+FROM node:22-bullseye
+
+# Install minimal dependencies
+RUN apt-get update && apt-get install -y \
+    iputils-ping \
+    curl \
+    sudo \
+    nano \
+    img2pdf \
+    --no-install-recommends && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Node-RED
+RUN npm install -g --unsafe-perm node-red
+
+# Buat direktori kerja & pindah user non-root
+RUN mkdir -p /data && chown -R 1000:1000 /data
+USER 1000
+WORKDIR /data
+
+# Install node-red nodes tambahan (opsional)
+# Contoh: telegram, file, dll (tinggal uncomment kalo mau include langsung)
+# RUN npm install node-red-contrib-telegrambot node-red-node-email
+
+EXPOSE 1880
+
+CMD ["node-red", "-u", "/data"]
+
